@@ -1,31 +1,31 @@
-#include <iostream>
-using namespace std;
 
+//EBNF grammar given as:
+//<S> ::= { a } <X> | b <X>
+//<X> ::= c | d
+//we interpreted the given EBNF grammar as:
 
 //there must not be 'cd'
 //there can be only 'c' or 'd' 
 //if there is neither c nor d, syntax error at char_pos = 0
 
 
+#include <iostream>
+using namespace std;
+
 class SimpleParser{
-	
-	
+		
 private:
-	
 	
 	string input; 
 	
 	int char_pos; 
 	
 public:
-	
 	void initializer(string input){
 		
 		char_pos = -1; 
-	
 		
 	}
-
 
 	void fun_s(string input){
 		
@@ -34,11 +34,8 @@ public:
 		
 		char CharD = 'd'; 
 		
-	
 		char_pos = input.find(CharD);
 
-
-	
 		//if there is c and d
 		
 		//input is valid 
@@ -47,8 +44,7 @@ public:
 			
 			cout<<"Input is valid"<<endl; 
 		}
-		
-		
+	
 		//if there is consecutive cd
 		
 		else if ((input.find(CharC) != string::npos)&&( input.find(CharD) != string::npos)){
@@ -63,12 +59,7 @@ public:
 			
 		cout<<"Syntax error at character position 0"<<endl; 	
 		}
-			
-	
-	}
-	
-	
-	
+	} 
 	
 	//check if there is c or d in the input string 
 	//but cannot occur both c and d consecutive or adjacent 
@@ -91,27 +82,20 @@ public:
 		
 			
 	}
-		
-		
-	
-	
+        //get the next character in the input string 
 	char get_next_char(string input){
 		
 		for(char_pos = 0; char_pos <= sizeof(input); char_pos++){
 			
 			if(fun_x(input)){
 				
-				char_pos = char_pos+1;
-			
+				char_pos = char_pos+1;	
 			}
 
 		}
 		return input[char_pos];
-	}
-
-	
+	}	
 }; 
-
 
 
 //Driver test 
@@ -119,29 +103,24 @@ public:
 
 int main(int argc, char *argv[]) {
 	
-	
-	
+
 	SimpleParser sp; 
 	
 	string test1 = "bc";
 
 	sp.fun_s(test1); 
-	
 
 	string test2 = "acd";
 	
 	sp.fun_s(test2); 
 	
-	
 	string test3 = "aaad";
 	
 	sp.fun_s(test3); 
 	
-	
 	string test4 = "c";
 
 	sp.fun_s(test4); 
-	
 	
 	string test5 = "2yz";
 
@@ -152,7 +131,6 @@ int main(int argc, char *argv[]) {
 	sp.fun_s(test6); 
 	
 	//List of Extra Test Cases Used for Debugging:
-
 	
 	string test7 = "bbcc";
 	
@@ -172,9 +150,7 @@ int main(int argc, char *argv[]) {
 	
 	//Input is valid
 	//Syntax error at character position 3
-	//Syntax error at character position 0
-
-	
+	//Syntax error at character position 0	
 }
 
 	
